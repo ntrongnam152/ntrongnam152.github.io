@@ -1,65 +1,47 @@
-// Thêm sự kiện kéo và thả chỉ một lần cho .balloon
-const balloon = document.querySelector('.balloon');
+const balloon = document.querySelector('#heliBalloon');
+const device = document.querySelector('#coolingDevice');
+const status = document.querySelector('#status');
+const pipe = document.querySelector('#pipe');
+const heliTank = document.querySelector('#heliTank');
 
+// Sự kiện khi bắt đầu kéo bóng bay
 balloon.addEventListener('dragstart', (e) => {
-  e.dataTransfer.setData('text/plain', null); // Ngăn không cho chuyển dữ liệu khi kéo
-  e.target.classList.add('dragging'); // Thêm class khi bắt đầu kéo
+    e.dataTransfer.setData('text/plain', null);
+    balloon.classList.add('dragging');
 });
 
+// Sự kiện khi kết thúc kéo bóng bay
 balloon.addEventListener('dragend', (e) => {
-  e.target.classList.remove('dragging'); // Xóa class khi kết thúc kéo
-  
-  // Di chuyển bóng bay khi thả
-  e.target.style.position = 'absolute';
-  e.target.style.left = '${e.pageX - 25}px';  // Sử dụng dấu ngoặc kép (`` ` ``) để chèn giá trị biến
-  e.target.style.top = '${e.pageY - 25}px';   // Sử dụng dấu ngoặc kép (`` ` ``) để chèn giá trị biến
+    balloon.classList.remove('dragging');
+    balloon.classList.add('upward'); // Bóng bay bay lên khi thả
 
-  // Thêm hiệu ứng bay lên sau khi thả
-  e.target.classList.add('upward');
+    // Kiểm tra nếu bóng bay gần thiết bị, bắt đầu làm mát
+    if (checkBalloonProximity(balloon, device)) {
+        startCooling();
+    }
 
-  // Xóa class 'upward' sau khi hoàn tất hiệu ứng (3 giây)
-  setTimeout(() => {
-    e.target.classList.remove('upward');
-  }, 3000);
+    // Xóa lớp "upward" sau 3 giây (hiệu ứng kết thúc)
+    setTimeout(() => {
+        balloon.classList.remove('upward');
+    }, 3000);
 });
 
-balloon.addEventListener('dragover', (e) => {
-  e.preventDefault(); // Cho phép kéo thả
-});
-
-balloon.addEventListener('drop', (e) => {
-  e.preventDefault(); // Ngăn hành động mặc định
-});
-
-function convertToHeliumVoice() {
-  const input = document.getElementById('textInput').value;
-  if (!input.trim()) {
-    alert('Vui lòng nhập văn bản!');
-    return;
-  }
-
-  // Lấy danh sách các giọng nói có sẵn
-  const voices = window.speechSynthesis.getVoices();
-
-  // Tìm giọng tiếng Việt (hoặc một giọng nào đó nếu không có tiếng Việt)
-  const vietnameseVoice = voices.find(voice => voice.lang.includes('vi')) || voices[0];
-
-  // Tạo đối tượng SpeechSynthesisUtterance
-  const utterance = new SpeechSynthesisUtterance(input);
-  utterance.voice = vietnameseVoice; // Gán giọng nói tiếng Việt hoặc giọng đầu tiên trong danh sách
-  utterance.pitch = 2; // Tăng độ cao giọng nói để giống giọng helium
-  utterance.rate = 1.5; // Tăng tốc độ nói để thêm hiệu ứng helium
-  utterance.volume = 1; // Âm lượng tối đa
-
-  // Phát giọng nói
-  window.speechSynthesis.speak(utterance);
-
-  // Hiển thị văn bản chuyển đổi (tuỳ chọn)
-  const output = input.split('').join(' ').toUpperCase(); // Hiệu ứng văn bản helium
-  document.getElementById('output').textContent = output;
+// Hàm bắt đầu làm mát thiết bị
+function startCooling() {
+    device.style.backgroundColor = '#32cd32'; // Thay đổi màu thiết bị
+    pipe.style.backgroundColor = '#32cd32'; // Thay đổi màu ống dẫn khí
+    status.textContent = 'Thiết bị đang được làm mát!'; // Cập nhật trạng thái
 }
 
-// Đảm bảo danh sách giọng nói được tải và sử dụng giọng phù hợp
-window.speechSynthesis.onvoiceschanged = () => {
-  console.log('Danh sách giọng nói đã được tải.');
-};
+// Hàm kiểm tra khoảng cách giữa bóng bay và thiết bị
+function checkBalloonProximity(balloon, device) {
+    const balloonRect = balloon.getBoundingClientRect();
+    const deviceRect = device.getBoundingClientRect();
+
+    // Tính toán khoảng cách giữa bóng bay và thiết bị
+    const distanceX = Math.abs(balloonRect.left - deviceRect.left);
+    const distanceY = Math.abs(balloonRect.top - deviceRect.top);
+
+    // Xác định khoảng cách gần (50px theo cả hai chiều)
+    return distanceX <= 50 && distanceY <= 50;
+}

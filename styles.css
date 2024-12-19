@@ -1,42 +1,100 @@
+/* Toàn bộ giao diện */
 body {
   font-family: Arial, sans-serif;
   text-align: center;
+  background-color: #f0f8ff;
   margin: 0;
   padding: 0;
-  background-color: #f0f8ff;
 }
 
 header {
   background-color: #87ceeb;
   color: white;
   padding: 20px 0;
+  margin-bottom: 20px;
 }
 
-main {
+/* Hệ thống làm mát */
+.cooling-system {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 20px; /* Khoảng cách giữa các phần tử */
+  margin: 30px auto;
   padding: 20px;
+  max-width: 800px;
 }
 
+/* Bình khí Heli */
+.heli-tank {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  font-size: 24px;
+  color: #32cd32; /* Màu xanh của khí Heli */
+  border: 2px solid #32cd32;
+  padding: 10px;
+  border-radius: 10px;
+  background-color: #e6f7e6;
+}
+
+/* Ống dẫn khí */
+.pipe {
+  width: 50px;
+  height: 150px; /* Tăng chiều cao để nhìn cân đối hơn */
+  background-color: #b0c4de; /* Màu xám nhạt */
+  border-radius: 10px;
+  transition: background-color 1s ease, transform 1s ease; /* Hiệu ứng chuyển màu và chuyển động */
+}
+
+/* Thiết bị làm mát */
+.device {
+  width: 120px;
+  height: 120px;
+  background-color: #ff6347;
+  color: white;
+  line-height: 120px;
+  text-align: center;
+  border-radius: 10px;
+  transition: background-color 1s ease, transform 1s ease; /* Hiệu ứng màu và chuyển động */
+}
+
+/* Nút bấm */
+button {
+  margin-top: 20px;
+  padding: 10px 20px;
+  background-color: #87ceeb;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 16px;
+}
+
+button:hover {
+  background-color: #4682b4;
+  color: white;
+}
+
+/* Trạng thái hiển thị */
+#status {
+  margin-top: 10px;
+  font-size: 16px;
+  color: #555;
+}
+
+/* Hiệu ứng bóng bay */
 .balloon {
   font-size: 50px;
   cursor: grab;
-  margin: 20px;
-  position: absolute;
-  transition: transform 1s ease-in-out; /* Hiệu ứng di chuyển */
+  animation: float 3s infinite ease-in-out;
 }
 
-.balloon.dragging {
-  cursor: grabbing;
-}
-
-.balloon.upward {
-  animation: rise 3s forwards; /* Hiệu ứng bay lên */
-}
-
-@keyframes rise {
-  0% {
-    transform: translateY(0); /* Vị trí ban đầu */
+/* Hiệu ứng di chuyển của bóng bay */
+@keyframes float {
+  0%, 100% {
+    transform: translateY(0);
   }
-  100% {
-    transform: translateY(-300px); /* Nâng lên 300px */
+  50% {
+    transform: translateY(-20px);
   }
 }

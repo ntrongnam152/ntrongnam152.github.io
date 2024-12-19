@@ -10,18 +10,36 @@
   <header>
     <h1>Khám Phá Helium</h1>
   </header>
-  <p>I'm hosted with GitHub Pages.</p>
+  
   <main>
-    <section id="balloon">
+    <!-- Khu vực mô phỏng hệ thống làm mát -->
+    <section id="coolingSystem" class="cooling-system">
+      <h2>Làm mát thiết bị bằng khí Heli</h2>
+      <div id="heliTank" class="heli-tank">
+        <span>🛢️</span>
+        <p>Bình khí Heli</p>
+      </div>
+      <div id="pipe" class="pipe"></div>
+      <div id="coolingDevice" class="device">Thiết bị</div>
+      <button onclick="startCooling()">Bắt đầu làm mát</button>
+      <p id="status">Thiết bị chưa được làm mát.</p>
+    </section>
+
+    <!-- Khu vực bóng bay -->
+    <section id="balloonInteraction">
       <h2>Kéo thả bóng bay</h2>
       <div class="balloon" draggable="true">🎈</div>
     </section>
-    <section id="voice">
+
+    <!-- Khu vực chuyển đổi giọng nói -->
+    <section id="heliumVoice">
       <h2>Thử giọng Helium</h2>
       <textarea id="textInput" placeholder="Nhập văn bản..."></textarea>
       <button onclick="convertToHeliumVoice()">Chuyển giọng</button>
       <p id="output"></p>
     </section>
+
+    <!-- Sự thật thú vị về Helium -->
     <section id="facts">
       <h2>Sự thật thú vị</h2>
       <ul>
@@ -31,6 +49,7 @@
       </ul>
     </section>
   </main>
+  
   <script src="scripts.js"></script>
 </body>
 </html>
