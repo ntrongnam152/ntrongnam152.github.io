@@ -84,7 +84,7 @@ button:hover {
 
 /* Hiệu ứng khi bóng bay lên */
 .fly-up {
-  animation: flyUp 3s ease-in-out;
+  animation: flyUp 3s ease-in-out forwards;
   position: absolute; /* Đảm bảo bóng không bị ảnh hưởng bởi bố cục */
 }
 
@@ -99,7 +99,7 @@ button:hover {
 }
 
 /* Bóng bay */
-#heliBalloon {
+#Balloon {
   font-size: 50px;
   cursor: grab;
 }
