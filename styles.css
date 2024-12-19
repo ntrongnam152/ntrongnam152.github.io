@@ -1,41 +1,42 @@
 body {
-    font-family: Arial, sans-serif;
-    text-align: center;
-    margin: 0;
-    padding: 0;
-    background-color: #f0f8ff;
+  font-family: Arial, sans-serif;
+  text-align: center;
+  margin: 0;
+  padding: 0;
+  background-color: #f0f8ff;
+}
+
+header {
+  background-color: #87ceeb;
+  color: white;
+  padding: 20px 0;
+}
+
+main {
+  padding: 20px;
+}
+
+.balloon {
+  font-size: 50px;
+  cursor: grab;
+  margin: 20px;
+  position: absolute;
+  transition: transform 1s ease-in-out; /* Hiệu ứng di chuyển */
+}
+
+.balloon.dragging {
+  cursor: grabbing;
+}
+
+.balloon.upward {
+  animation: rise 3s forwards; /* Hiệu ứng bay lên */
+}
+
+@keyframes rise {
+  0% {
+    transform: translateY(0); /* Vị trí ban đầu */
   }
-  
-  header {
-    background-color: #87ceeb;
-    color: white;
-    padding: 20px 0;
+  100% {
+    transform: translateY(-300px); /* Nâng lên 300px */
   }
-  
-  main {
-    padding: 20px;
-  }
-  
-  .balloon {
-    font-size: 50px;
-    cursor: grab;
-    margin: 20px;
-  }
-  
-  textarea {
-    width: 80%;
-    height: 100px;
-    margin: 10px 0;
-  }
-  
-  button {
-    padding: 10px 20px;
-    background-color: #87cefa;
-    border: none;
-    color: white;
-    cursor: pointer;
-  }
-  
-  button:hover {
-    background-color: #4682b4;
-  }
+}
