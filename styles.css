@@ -13,15 +13,7 @@ header {
   padding: 20px 0;
   margin-bottom: 20px;
 }
- /* Khu vực chuyển giọng nói*/
- #heliumVoice textarea {
-  width: 40%;
-  height: 70px;
-  font-size: 18px;
-  margin: 0 auto;
-  padding: 0 auto;
-}
-
+ 
 /* Hệ thống làm mát */
 .cooling-system {
   display: flex;
