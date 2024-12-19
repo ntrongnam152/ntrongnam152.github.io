@@ -38,8 +38,15 @@ function convertToHeliumVoice() {
     return;
   }
 
-  // Sử dụng SpeechSynthesis API để chuyển văn bản thành giọng nói
+  // Lấy danh sách các giọng nói có sẵn
+  const voices = window.speechSynthesis.getVoices();
+
+  // Tìm giọng tiếng Việt (hoặc một giọng nào đó nếu không có tiếng Việt)
+  const vietnameseVoice = voices.find(voice => voice.lang.includes('vi')) || voices[0];
+
+  // Tạo đối tượng SpeechSynthesisUtterance
   const utterance = new SpeechSynthesisUtterance(input);
+  utterance.voice = vietnameseVoice; // Gán giọng nói tiếng Việt hoặc giọng đầu tiên trong danh sách
   utterance.pitch = 2; // Tăng độ cao giọng nói để giống giọng helium
   utterance.rate = 1.5; // Tăng tốc độ nói để thêm hiệu ứng helium
   utterance.volume = 1; // Âm lượng tối đa
@@ -51,3 +58,8 @@ function convertToHeliumVoice() {
   const output = input.split('').join(' ').toUpperCase(); // Hiệu ứng văn bản helium
   document.getElementById('output').textContent = output;
 }
+
+// Đảm bảo danh sách giọng nói được tải và sử dụng giọng phù hợp
+window.speechSynthesis.onvoiceschanged = () => {
+  console.log('Danh sách giọng nói đã được tải.');
+};
