@@ -13,6 +13,14 @@ header {
   padding: 20px 0;
   margin-bottom: 20px;
 }
+ /* Khu vực chuyển giọng nói*/
+ #heliumVoice textarea {
+  width: 80%;
+  height: 100px;
+  font-size: 18px;
+  margin-bottom: 20px;
+  padding: 10px;
+}
 
 /* Hệ thống làm mát */
 .cooling-system {
@@ -112,4 +120,9 @@ button:hover {
 /* Kéo bóng bay */
 .dragging {
   opacity: 0.5; /* Hiệu ứng khi kéo bóng */
+}
+#output {
+  margin-top: 20px;
+  font-size: 18px;
+  font-weight: bold;
 }

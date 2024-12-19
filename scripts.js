@@ -40,3 +40,28 @@ function checkBalloonProximity(balloon, device) {
     // Xác định khoảng cách gần (50px theo cả hai chiều)
     return distanceX <= 50 && distanceY <= 50;
 }
+// Hàm chuyển văn bản thành giọng nói
+function convertToHeliumVoice() {
+  const input = document.getElementById('textInput').value;
+
+  // Kiểm tra nếu người dùng chưa nhập văn bản
+  if (!input.trim()) {
+    alert('Vui lòng nhập văn bản!');
+    return;
+  }
+
+  // Sử dụng SpeechSynthesis API để chuyển văn bản thành giọng nói
+  const utterance = new SpeechSynthesisUtterance(input);
+
+  // Thiết lập các đặc tính cho giọng nói (giọng cao như helium)
+  utterance.pitch = 2; // Tăng độ cao giọng nói để giống giọng helium
+  utterance.rate = 1.5; // Tăng tốc độ nói để thêm hiệu ứng helium
+  utterance.volume = 1; // Âm lượng tối đa
+
+  // Phát giọng nói
+  window.speechSynthesis.speak(utterance);
+
+  // Hiển thị văn bản chuyển đổi (tuỳ chọn)
+  const output = input.split('').join(' ').toUpperCase(); // Hiệu ứng văn bản helium
+  document.getElementById('output').textContent = output;
+}
