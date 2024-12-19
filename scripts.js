@@ -1,4 +1,4 @@
-const balloon = document.querySelector('#heliBalloon');
+const balloon = document.querySelector('#Balloon');
 const device = document.querySelector('#coolingDevice');
 const status = document.querySelector('#status');
 const pipe = document.querySelector('#pipe');
@@ -13,16 +13,11 @@ balloon.addEventListener('dragstart', (e) => {
 // Sự kiện khi kết thúc kéo bóng bay
 balloon.addEventListener('dragend', (e) => {
     balloon.classList.remove('dragging');
-    balloon.classList.add('upward'); // Bóng bay bay lên khi thả
+    balloon.classList.add('fly-up'); // Bóng bay bay lên khi thả
 
-    // Kiểm tra nếu bóng bay gần thiết bị, bắt đầu làm mát
-    if (checkBalloonProximity(balloon, device)) {
-        startCooling();
-    }
-
-    // Xóa lớp "upward" sau 3 giây (hiệu ứng kết thúc)
+    // Xóa lớp "fly-up" sau 3 giây (hiệu ứng kết thúc)
     setTimeout(() => {
-        balloon.classList.remove('upward');
+        balloon.classList.remove('fly-up');
     }, 3000);
 });
 

@@ -82,19 +82,29 @@ button:hover {
   color: #555;
 }
 
-/* Hiệu ứng bóng bay */
-.balloon {
-  font-size: 50px;
-  cursor: grab;
-  animation: float 3s infinite ease-in-out;
+/* Hiệu ứng khi bóng bay lên */
+.fly-up {
+  animation: flyUp 3s ease-in-out;
+  position: absolute; /* Đảm bảo bóng không bị ảnh hưởng bởi bố cục */
 }
 
-/* Hiệu ứng di chuyển của bóng bay */
-@keyframes float {
-  0%, 100% {
+/* Hiệu ứng bay lên */
+@keyframes flyUp {
+  0% {
     transform: translateY(0);
   }
-  50% {
-    transform: translateY(-20px);
+  100% {
+    transform: translateY(-300px); /* Bóng bay lên 300px */
   }
+}
+
+/* Bóng bay */
+#heliBalloon {
+  font-size: 50px;
+  cursor: grab;
+}
+
+/* Kéo bóng bay */
+.dragging {
+  opacity: 0.5; /* Hiệu ứng khi kéo bóng */
 }
