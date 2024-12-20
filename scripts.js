@@ -26,7 +26,7 @@ function launchRocket() {
     // Đặt lại sau khi tên lửa bay xong (3 giây)
     setTimeout(() => {
       status.textContent = 'Trạng thái: Tên lửa đã bay.';
-    }, 3000);
+    }, 6000);
   }
   // Hàm làm mát thiết bị
 function coolingDevice() {
@@ -34,7 +34,7 @@ function coolingDevice() {
     let currentTemp = 80;
     const targetTemp = 20;
     const interval = setInterval(() => {
-      currentTemp -= 1;  // Giảm nhiệt độ mỗi lần 1°C
+      currentTemp -= 2;  // Giảm nhiệt độ mỗi lần 1°C
       temperatureElement.textContent = `${currentTemp}°C`;
       
       if (currentTemp <= targetTemp) {
