@@ -53,6 +53,7 @@ header {
   height: 120px;
   background-color: #ff6347;
   color: white;
+  transform: rotate(360deg); /* Hiệu ứng quay */
   line-height: 120px;
   text-align: center;
   border-radius: 10px;
@@ -93,13 +94,16 @@ button:hover {
   0% {
     transform: translateY(0);
   }
-  100% {
+  50% {
     transform: translateY(-300px); /* Bóng bay lên 300px */
+  }
+  100% {
+    transform: translateY(0); /* Quay lại vị trí cũ */
   }
 }
 
 /* Bóng bay */
-#Balloon {
+#balloon {
   font-size: 50px;
   cursor: grab;
   position: absolute;

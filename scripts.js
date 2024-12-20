@@ -1,11 +1,11 @@
 let isCooling = false; //Trạng thái ban đầu: Thiết bị chưa được làm mát
 
 function toggleCooling() {
- const balloon = document.querySelector('#balloon');
  const device = document.querySelector('#coolingDevice');
  const status = document.querySelector('#status');
  const pipe = document.querySelector('#pipe');
  const heliTank = document.querySelector('#heliTank');
+ const balloon = document.getElementById('#balloon');
 
  if(!isCooling) {
     //Bật làm mát
@@ -34,16 +34,27 @@ balloon.addEventListener('dragstart', (e) => {
     balloon.classList.add('dragging');
 });
 
-// Sự kiện khi kết thúc kéo bóng bay
-balloon.addEventListener('dragend', (e) => {
-    balloon.classList.remove('dragging');
-    balloon.classList.add('fly-up'); // Bóng bay bay lên khi thả
-
-    // Xóa lớp "fly-up" sau 3 giây (hiệu ứng kết thúc)
-    setTimeout(() => {
+// Hàm xử lý hiệu ứng bay
+function handleFlyUp() {
+    balloon.classList.add('fly-up');
+    // Xóa lớp "fly-up" sau khi hoạt ảnh kết thúc
+    balloon.addEventListener(
+      'animationend',
+      () => {
         balloon.classList.remove('fly-up');
-    }, 3000);
-});
+      },
+      { once: true } // Đảm bảo chỉ lắng nghe một lần
+    );
+  }
+  
+  // Sự kiện click
+  balloon.addEventListener('click', handleFlyUp);
+  
+  // Sự kiện kéo thả
+  balloon.addEventListener('dragend', (e) => {
+    balloon.classList.remove('dragging');
+    handleFlyUp(); // Kích hoạt hiệu ứng bay lên
+  });
 
 // Hàm chuyển văn bản thành giọng nói
 function convertToHeliumVoice() {
