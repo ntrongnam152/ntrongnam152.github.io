@@ -1,32 +1,40 @@
 let isCooling = false; //Trạng thái ban đầu: Thiết bị chưa được làm mát
 
 function toggleCooling() {
- const device = document.querySelector('#coolingDevice');
- const status = document.querySelector('#status');
+    const launchButton = document.getElementById('launchButton');
+    const rocket = document.getElementById('rocket');
+    const satellite = document.getElementById('satellite');
+    const status = document.getElementById('status');
  const pipe = document.querySelector('#pipe');
  const heliTank = document.querySelector('#heliTank');
  const balloon = document.getElementById('#balloon');
+}
 
- if(!isCooling) {
-    //Bật làm mát
-    device.style.backgroundColor= '#32cd32';
-    pipe.style.backgroundColor= '#32cd32';
-    status.textContent='Thiết bị đang được làm mát!';
-    isCooling= true;
- } else {
-    //Tắt làm mát
-    device.style.backgroundColor = '#ff6347';
-    pipe.style.backgroundColor = '#b0c4de';
-    status.textContent = 'Thiết bị đã ngừng làm mát.';
-    isCooling = false;
- }
-}
-// Hàm bắt đầu làm mát thiết bị
-function startCooling() {
-    device.style.backgroundColor = '#32cd32'; // Thay đổi màu thiết bị
-    pipe.style.backgroundColor = '#32cd32'; // Thay đổi màu ống dẫn khí
-    status.textContent = 'Thiết bị đang được làm mát!'; // Cập nhật trạng thái
-}
+ // Hàm phóng tên lửa
+function launchRocket() {
+    // Hiển thị vệ tinh và tên lửa bay lên
+    rocket.classList.add('fly-up');
+    satellite.style.opacity = 1;  // Hiển thị vệ tinh
+  
+    // Cập nhật trạng thái
+    status.textContent = 'Trạng thái: Tên lửa đang bay và làm mát thiết bị...';
+  
+    // Kích hoạt hiệu ứng làm mát
+    coolingDevice();
+  
+    // Đặt lại sau khi tên lửa bay xong (3 giây)
+    setTimeout(() => {
+      status.textContent = 'Trạng thái: Tên lửa đã bay.';
+    }, 3000);
+  }
+  
+  // Hàm làm mát thiết bị
+  function coolingDevice() {
+    // Thêm hiệu ứng làm mát (CSS)
+    const coolingMessage = document.createElement('p');
+    coolingMessage.textContent = 'Thiết bị đang được làm mát...';
+    document.getElementById('coolingSystem').appendChild(coolingMessage);
+  }
 
 // Sự kiện khi bắt đầu kéo bóng bay
 balloon.addEventListener('dragstart', (e) => {

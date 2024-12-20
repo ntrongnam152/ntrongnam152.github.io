@@ -19,13 +19,17 @@
         <span>🛢️</span>
         <p>Bình khí Heli</p>
       </div>
-      <div id="pipe" class="pipe">
-        <span>⬛⬜⬛</span>
-        <p>Ống dẫn khí</p>
+      <div id="pipe" class="pipe"></div> 
+      <div class="heli-pipe-icon"></div>
+      <!-- Khu vực phóng tên lửa và làm mát -->
+    <section id="launchSection" class="launch-section">
+      <h2>Phóng tên lửa và làm mát thiết bị</h2>
+      <div id="rocket" class="rocket">🚀</div>
+      <div id="satellite" class="satellite">🛰️</div>
+      <div id="coolingSystem" class="cooling-system">
+        <button id="launchButton" onclick="launchRocket()">Phóng tên lửa & làm mát</button>
       </div>
-      <div id="coolingDevice" class="device">Thiết bị</div>
-      <button onclick="toggleCooling()">Bắt đầu làm mát</button>
-      <p id="status">Thiết bị chưa được làm mát.</p>
+      <p id="status">Trạng thái: Chưa phóng tên lửa</p>
     </section>
 
     <!-- Khu vực bóng bay -->
