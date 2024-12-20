@@ -21,6 +21,13 @@ function toggleCooling() {
     isCooling = false;
  }
 }
+// Hàm bắt đầu làm mát thiết bị
+function startCooling() {
+    device.style.backgroundColor = '#32cd32'; // Thay đổi màu thiết bị
+    pipe.style.backgroundColor = '#32cd32'; // Thay đổi màu ống dẫn khí
+    status.textContent = 'Thiết bị đang được làm mát!'; // Cập nhật trạng thái
+}
+
 // Sự kiện khi bắt đầu kéo bóng bay
 balloon.addEventListener('dragstart', (e) => {
     e.dataTransfer.setData('text/plain', null);
