@@ -45,18 +45,6 @@ balloon.addEventListener('dragend', (e) => {
     }, 3000);
 });
 
-// Hàm kiểm tra khoảng cách giữa bóng bay và thiết bị
-function checkBalloonProximity(balloon, device) {
-    const balloonRect = balloon.getBoundingClientRect();
-    const deviceRect = device.getBoundingClientRect();
-
-    // Tính toán khoảng cách giữa bóng bay và thiết bị
-    const distanceX = Math.abs(balloonRect.left - deviceRect.left);
-    const distanceY = Math.abs(balloonRect.top - deviceRect.top);
-
-    // Xác định khoảng cách gần (50px theo cả hai chiều)
-    return distanceX <= 50 && distanceY <= 50;
-}
 // Hàm chuyển văn bản thành giọng nói
 function convertToHeliumVoice() {
   const input = document.getElementById('textInput').value;
