@@ -1,9 +1,26 @@
-const balloon = document.querySelector('#Balloon');
-const device = document.querySelector('#coolingDevice');
-const status = document.querySelector('#status');
-const pipe = document.querySelector('#pipe');
-const heliTank = document.querySelector('#heliTank');
+let isCooling = false; //Trạng thái ban đầu: Thiết bị chưa được làm mát
 
+function toggleCooling() {
+ const balloon = document.querySelector('#Balloon');
+ const device = document.querySelector('#coolingDevice');
+ const status = document.querySelector('#status');
+ const pipe = document.querySelector('#pipe');
+ const heliTank = document.querySelector('#heliTank');
+
+ if(isCooling) {
+    //Bật làm mát
+    device.style.backgroundColor= '#32cd32';
+    pipe.style.backgroundColor= '#32cd32';
+    status.textContent='Thiết bị đang được làm mát!';
+    isCooling= true;
+ } else {
+    //Tắt làm mát
+    device.style.backgroundColor = '#ff6347';
+    pipe.style.backgroundColor = '#b0c4de';
+    status.textContent = 'Thiết bị đã ngừng làm mát.';
+    isCooling = false;
+ }
+}
 // Sự kiện khi bắt đầu kéo bóng bay
 balloon.addEventListener('dragstart', (e) => {
     e.dataTransfer.setData('text/plain', null);
@@ -20,13 +37,6 @@ balloon.addEventListener('dragend', (e) => {
         balloon.classList.remove('fly-up');
     }, 3000);
 });
-
-// Hàm bắt đầu làm mát thiết bị
-function startCooling() {
-    device.style.backgroundColor = '#32cd32'; // Thay đổi màu thiết bị
-    pipe.style.backgroundColor = '#32cd32'; // Thay đổi màu ống dẫn khí
-    status.textContent = 'Thiết bị đang được làm mát!'; // Cập nhật trạng thái
-}
 
 // Hàm kiểm tra khoảng cách giữa bóng bay và thiết bị
 function checkBalloonProximity(balloon, device) {

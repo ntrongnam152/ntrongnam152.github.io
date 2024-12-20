@@ -103,8 +103,6 @@ button:hover {
   font-size: 50px;
   cursor: grab;
   position: absolute;
-  top: 50%;
-  left: 50%;
   transform: translate(-50%, -50%);
   transition: transform 1s ease;
 }
