@@ -40,8 +40,8 @@ header {
 
 /* Ống dẫn khí */
 .pipe {
-  width: 50px;
-  height: 150px; /* Tăng chiều cao để nhìn cân đối hơn */
+  width: 150px;
+  height: 50px; /* Tăng chiều cao để nhìn cân đối hơn */
   background-color: #b0c4de; /* Màu xám nhạt */
   border-radius: 10px;
   transition: background-color 1s ease, transform 1s ease; /* Hiệu ứng chuyển màu và chuyển động */

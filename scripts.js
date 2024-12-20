@@ -1,7 +1,7 @@
 let isCooling = false; //Trạng thái ban đầu: Thiết bị chưa được làm mát
 
 function toggleCooling() {
- const balloon = document.querySelector('#Balloon');
+ const balloon = document.querySelector('#balloon');
  const device = document.querySelector('#coolingDevice');
  const status = document.querySelector('#status');
  const pipe = document.querySelector('#pipe');
