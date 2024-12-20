@@ -7,7 +7,7 @@ function toggleCooling() {
  const pipe = document.querySelector('#pipe');
  const heliTank = document.querySelector('#heliTank');
 
- if(isCooling) {
+ if(!isCooling) {
     //Bật làm mát
     device.style.backgroundColor= '#32cd32';
     pipe.style.backgroundColor= '#32cd32';
