@@ -5,9 +5,10 @@ function toggleCooling() {
     const rocket = document.getElementById('rocket');
     const satellite = document.getElementById('satellite');
     const status = document.getElementById('status');
- const pipe = document.querySelector('#pipe');
- const heliTank = document.querySelector('#heliTank');
- const balloon = document.getElementById('#balloon');
+    const pipe = document.querySelector('#pipe');
+    const heliTank = document.querySelector('#heliTank');
+    const balloon = document.getElementById('#balloon');
+    const temperatureElement = document.getElementById('temperature');
 }
 
  // Hàm phóng tên lửa
@@ -26,6 +27,20 @@ function launchRocket() {
     setTimeout(() => {
       status.textContent = 'Trạng thái: Tên lửa đã bay.';
     }, 3000);
+  }
+  // Hàm làm mát thiết bị
+function coolingDevice() {
+    // Giảm nhiệt độ từ 80°C xuống 20°C
+    let currentTemp = 80;
+    const targetTemp = 20;
+    const interval = setInterval(() => {
+      currentTemp -= 1;  // Giảm nhiệt độ mỗi lần 1°C
+      temperatureElement.textContent = `${currentTemp}°C`;
+      
+      if (currentTemp <= targetTemp) {
+        clearInterval(interval);  // Dừng lại khi nhiệt độ đạt 20°C
+      }
+    }, 100);  // Mỗi 100ms, giảm 1°C
   }
   
   // Hàm làm mát thiết bị
