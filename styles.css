@@ -34,7 +34,7 @@ header {
     box-shadow: 0 0 10px 5px rgba(255, 69, 0, 0.5); /* Phát sáng màu đỏ cam */
   }
   50% {
-    box-shadow: 0 0 20px 10px rgba(255, 69, 0, 0.8); /* Tăng độ sáng */
+    box-shadow: 0 0 40px 20px rgba(255, 69, 0, 0.8); /* Tăng độ sáng */
   }
 }
 
@@ -51,10 +51,10 @@ header {
 }
 
 .overheat {
-  animation: overheatGlow 1s infinite, shake 0.3s infinite;
+  animation: overheatGlow 1s infinite, shake 0.7s infinite;
   background-color: rgba(255, 69, 0, 0.2); /* Hiệu ứng nền đỏ nhạt */
   border-radius: 50%; /* Bo góc để tạo hiệu ứng phát sáng */
-  transition: background-color 0.3s ease;
+  transition: background-color 0.7s ease;
 }
 
 .rocket {
@@ -66,8 +66,8 @@ header {
   font-size: 40px;
   position: absolute;
   top: -100px;
-  left: 50%;
-  transform: translateX(-50%);
+  left: 35%;
+  transform: translateX(-35%);
   opacity: 0;
   transition: opacity 2s ease;
 }
