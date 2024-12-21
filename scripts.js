@@ -12,7 +12,22 @@ function toggleCooling() {
   const balloon = document.querySelector('#balloon');
   const temperatureElement = document.getElementById('temperature');
 }
+ // Hàm tăng nhiệt độ khi tên lửa bay
+ function increaseTemperature() {
+  const interval = setInterval(() => {
+    if (!isLaunching || isCooling) {
+      clearInterval(interval); // Dừng tăng nhiệt độ khi làm mát hoặc dừng phóng
+      return;
+    }
+    currentTemp += 2; // Tăng 2°C mỗi giây
+    temperatureElement.textContent = `${currentTemp}°C`;
 
+    if (currentTemp >= 100) {
+      status.textContent = 'Cảnh báo: Nhiệt độ quá cao!';
+      clearInterval(interval);
+    }
+  }, 1000);
+}
 // Hàm phóng tên lửa
 function launchRocket() {
   const rocket = document.getElementById('rocket');
@@ -30,41 +45,22 @@ function launchRocket() {
   // Cập nhật trạng thái
   status.textContent = 'Trạng thái: Tên lửa đang bay và làm mát thiết bị...';
 
-  // Hàm tăng nhiệt độ khi tên lửa bay
-function increaseTemperature() {
-  const interval = setInterval(() => {
-    if (!isLaunching || isCooling) {
-      clearInterval(interval); // Dừng tăng nhiệt độ khi làm mát hoặc dừng phóng
-      return;
-    }
-    currentTemp += 2; // Tăng 2°C mỗi giây
-    temperatureElement.textContent = `${currentTemp}°C`;
-
-    if (currentTemp >= 100) {
-      status.textContent = 'Cảnh báo: Nhiệt độ quá cao!';
-      clearInterval(interval);
-    }
-  }, 1000);
-}
   // Dừng trạng thái bay sau 6 giây
   setTimeout(() => {
     status.textContent = 'Trạng thái: Tên lửa đã bay.';
     isLaunching = false;
   }, 6000);
 }
-// Hàm làm mát thiết bị
-function coolingDevice() {
-  if (isCooling) return; // Nếu đã làm mát thì không làm gì
-  isCooling = true;
-  status.textContent = 'Trạng thái: Đang làm mát thiết bị...';
-  decreaseTemperature(); // Bắt đầu giảm nhiệt độ
-
-  // Dừng làm mát sau 5 giây
-  setTimeout(() => {
-    status.textContent = 'Trạng thái: Thiết bị đã được làm mát.';
-    isCooling = false;
-  }, 5000);
-
+// Hàm giảm nhiệt độ khi làm mát
+function decreaseTemperature() {
+  const interval = setInterval(() => {
+    if (!isCooling || currentTemp <= 30) {
+      clearInterval(interval); // Dừng làm mát khi đạt nhiệt độ an toàn
+      return;
+    }
+    currentTemp -= 3; // Giảm 3°C mỗi giây
+    temperatureElement.textContent = `${currentTemp}°C`;
+  }, 1000);
 
   // Hiển thị thông báo làm mát
   const coolingMessage = document.createElement('p');
