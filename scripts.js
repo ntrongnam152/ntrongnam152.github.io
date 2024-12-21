@@ -19,14 +19,14 @@ function toggleCooling() {
       clearInterval(interval); // Dừng tăng nhiệt độ khi làm mát hoặc dừng phóng
       return;
     }
-    currentTemp += 2; // Tăng 2°C mỗi giây
+    currentTemp += 2; // Tăng 20°C mỗi giây
     temperatureElement.textContent = `${currentTemp}°C`;
 
     if (currentTemp >= 100) {
       status.textContent = 'Cảnh báo: Nhiệt độ quá cao!';
       clearInterval(interval);
     }
-  }, 1000);
+  }, 100);
 }
 // Hàm phóng tên lửa
 function launchRocket() {
