@@ -1,20 +1,24 @@
 let currentTemp = 30; // Nhiệt độ ban đầu
 let isCooling = false; // Trạng thái làm mát
 let isLaunching = false; // Trạng thái tên lửa đang bay
+let temperatureInterval; // ID để quản lý setInterval
+let coolingInterval;
+
+const rocket = document.getElementById('rocket');
+const satellite = document.getElementById('satellite');
+const status = document.getElementById('status');
+const temperatureElement = document.getElementById('temperature');
 
 function toggleCooling() {
   const launchButton = document.getElementById('launchButton');
-  const rocket = document.getElementById('rocket');
-  const satellite = document.getElementById('satellite');
-  const status = document.getElementById('status');
   const pipe = document.querySelector('#pipe');
   const heliTank = document.querySelector('#heliTank');
-  const balloon = document.querySelector('#balloon');
-  const temperatureElement = document.getElementById('temperature');
+  const Balloon = document.getElementById('balloon');
 }
  // Hàm tăng nhiệt độ khi tên lửa bay
  function increaseTemperature() {
-  const interval = setInterval(() => {
+  clearInterval(temperatureInterval); // Xóa bất kỳ setInterval trước đó
+  temperatureInterval = setInterval(() => {
     if (!isLaunching || isCooling) {
       clearInterval(interval); // Dừng tăng nhiệt độ khi làm mát hoặc dừng phóng
       return;
@@ -53,21 +57,30 @@ function launchRocket() {
 }
 // Hàm giảm nhiệt độ khi làm mát
 function decreaseTemperature() {
-  const interval = setInterval(() => {
+  clearInterval(coolingInterval); // Xóa bất kỳ setInterval trước đó
+  coolingInterval = setInterval(() => {
     if (!isCooling || currentTemp <= 30) {
       clearInterval(interval); // Dừng làm mát khi đạt nhiệt độ an toàn
       return;
     }
-    currentTemp -= 3; // Giảm 3°C mỗi giây
+    currentTemp -= 3; // Giảm 30°C mỗi giây
     temperatureElement.textContent = `${currentTemp}°C`;
-  }, 1000);
-
-  // Hiển thị thông báo làm mát
-  const coolingMessage = document.createElement('p');
-  coolingMessage.textContent = 'Thiết bị đang được làm mát...';
-  coolingSystem.appendChild(coolingMessage);
+  }, 100);
 }
+// Hàm làm mát
+function coolingDevice() {
+  if (isCooling) return;
+  isCooling = true;
 
+  status.textContent = 'Trạng thái: Đang làm mát thiết bị...';
+  decreaseTemperature();
+
+  // Dừng làm mát sau 5 giây
+  setTimeout(() => {
+    status.textContent = 'Trạng thái: Thiết bị đã được làm mát.';
+    isCooling = false;
+  }, 5000);
+}
 // Sự kiện khi bắt đầu kéo bóng bay
 const balloon = document.getElementById('balloon');
 
@@ -126,5 +139,5 @@ function convertToHeliumVoice() {
   document.getElementById('output').textContent = output;
 }
 // Gắn sự kiện cho các nút
-launchButton.addEventListener('click', launchRocket);
-coolingButton.addEventListener('click', coolingDevice);
+document.getElementById('launchButton').addEventListener('click', launchRocket);
+document.getElementById('coolingButton').addEventListener('click', coolingDevice);
