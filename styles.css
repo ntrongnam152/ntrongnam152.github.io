@@ -28,6 +28,35 @@ header {
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 
+/* Hiệu ứng quá nhiệt */
+@keyframes overheatGlow {
+  0%, 100% {
+    box-shadow: 0 0 10px 5px rgba(255, 69, 0, 0.5); /* Phát sáng màu đỏ cam */
+  }
+  50% {
+    box-shadow: 0 0 20px 10px rgba(255, 69, 0, 0.8); /* Tăng độ sáng */
+  }
+}
+
+@keyframes shake {
+  0%, 100% {
+    transform: translateX(0);
+  }
+  25% {
+    transform: translateX(-5px);
+  }
+  75% {
+    transform: translateX(5px);
+  }
+}
+
+.overheat {
+  animation: overheatGlow 1s infinite, shake 0.3s infinite;
+  background-color: rgba(255, 69, 0, 0.2); /* Hiệu ứng nền đỏ nhạt */
+  border-radius: 50%; /* Bo góc để tạo hiệu ứng phát sáng */
+  transition: background-color 0.3s ease;
+}
+
 .rocket {
   font-size: 80px;
   position: relative;
