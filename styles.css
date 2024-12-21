@@ -45,7 +45,6 @@ header {
 
 .fly-up {
   animation: flyUp 3s ease-in-out forwards;
-  position: absolute;
 }
 
 @keyframes flyUp {
@@ -80,6 +79,7 @@ header {
 
 #temperature {
   font-weight: bold;
+  color: #ff4500;
 }
 
 /* Bình khí Heli */
