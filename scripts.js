@@ -28,7 +28,7 @@ function toggleCooling() {
 
     if (currentTemp >= 100) {
       status.textContent = 'Cảnh báo: Tên lửa đang quá nhiệt!';
-      clearInterval(interval);
+      rocket.classList.add('overheat'); // Thêm hiệu ứng quá nhiệt
     }
   }, 100);
 }
@@ -60,7 +60,7 @@ function decreaseTemperature() {
   clearInterval(coolingInterval); // Xóa bất kỳ setInterval trước đó
   coolingInterval = setInterval(() => {
     if (!isCooling || currentTemp <= 30) {
-      clearInterval(interval); // Dừng làm mát khi đạt nhiệt độ an toàn
+      clearInterval(coolingInterval); // Dừng làm mát khi đạt nhiệt độ an toàn
       rocket.classList.remove('overheat'); // Xóa hiệu ứng khi nhiệt độ an toàn
       return;
     }
